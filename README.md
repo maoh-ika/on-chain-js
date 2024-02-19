@@ -1,5 +1,5 @@
 # OnChainJS
-Solidiyで実装されたJavaScriptインタープリタ
+Solidiyで実装されたJavaScriptインタープリター。
 
 OnChainJS is a on-chain JavaScript interpreter, specialized in executing functions.
 
