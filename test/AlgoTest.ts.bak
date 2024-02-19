@@ -1,0 +1,115 @@
+import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
+import { expect } from 'chai';
+import { ethers } from 'hardhat';
+import proxyAbi from '../artifacts/contracts/proxy/JSInterpreterProxy.sol/JSInterpreterProxy'
+import { proxyAddress } from '../scripts/deployProxy'  
+import { makeRunContext } from '../scripts/runContext'
+
+describe('AlgoTest', function () {
+  const gasLimit = 100000000
+
+  async function deployFixture() {
+    const provider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:8545/')
+    const proxy = new ethers.Contract(proxyAddress, proxyAbi.abi, provider)
+    return { proxy }
+  }
+
+  async function interpret(code: string) {
+    const { proxy } = await loadFixture(deployFixture);
+    return await proxy.interpret(code, { gasLimit: gasLimit })
+  } 
+  
+  async function interpretWithState(code: string, state: any) {
+    const { proxy } = await loadFixture(deployFixture);
+    return await proxy.interpretWithState(code, state, { gasLimit: gasLimit })
+  } 
+
+  before(async function() {
+    await loadFixture(deployFixture);
+  });
+
+  it('insertSort', async function () {
+    const code = `
+    /**
+* @name Insertion Sort
+* @desc A basic sorting algorithm.
+*/
+function insertSort(arr=[2,1,7,3]) {
+  for (var i = 0; i < arr.length; ++i) {
+    var val = arr[i];
+    var pos = i - 1;
+    for (; pos >= 0 && arr[pos] > val; --pos) {
+      arr[pos + 1] = arr[pos];
+    }
+    arr[pos + 1] = val;
+  }
+  return arr;
+}
+    `
+    const result = await interpret(code)
+    expect(result.value).to.equal('[1,2,3,7]');
+  })
+  it('greedySearch', async function () {
+    const code = `
+    function greedySearch(positions=[1,2], minLength=50, minCutTimes=1, L=100) {
+    var length = 0;
+    var cutTimes = 0;
+    for (var i = 0; i <= positions.length; i++) {
+      var delta;
+      if (i === 0) {
+        delta = positions[i];
+      } else if (i === positions.length) {
+        delta = L - positions[i - 1];
+      } else {
+        delta = positions[i] - positions[i - 1];
+      }
+      length += delta;
+   
+      if (length >= minLength) {
+        length = 0;
+        cutTimes++;
+      }
+   
+      if (cutTimes > minCutTimes) { return true };
+    }
+    return false;
+  }
+    `
+    const result = await interpret(code)
+    expect(result.value).to.equal('[1,2,3,7]');
+  })
+  it('currentBlock', async function () {
+    const code = `
+    function currentBlock() {
+      return "Ethreum Block¥n¥n" + "    " + ethreumBlock["blockNumber"];
+    }
+    `
+    const result = await interpret(code)
+    expect(result.value).to.equal('Ethreum Block¥n¥n    222');
+  })
+  it('countdownBirthday', async function () {
+    const code = `
+    function countdownBirthday() {
+      var birthdayMonth = 1;
+      var birthdayDay = 9;
+      var curDay = ethreumBlock["day"];
+      var curMonth = ethreumBlock["month"];
+      if (birthdayMonth == curMonth) {
+        if (curDay < birthdayDay) {
+          return (birthdayDay - curDay) + " DAYS LEFT";
+        } else if (curDay == birthdayDay) {
+          return "HAPPY BIRTHDAY !!!!!";
+        } else {
+          return "12 MONTHS LEFT";
+        }
+      } else if (curMonth < birthdayMonth) {
+          return (birthdayMonth - curMonth) + " MONTHS LEFT";
+      } else {
+          return (12 - (curMonth - birthdayMonth)) + " MONTHS LEFT";
+      }
+    }
+    `
+    const result = await interpret(code)
+    expect(result.value).to.equal('Ethreum Block¥n¥n    222');
+  })
+});

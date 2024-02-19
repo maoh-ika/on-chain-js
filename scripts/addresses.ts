@@ -1,0 +1,82 @@
+
+export const addresses: {[key:string]: {[key:string]:{[key:string]:string}}} = {
+  localhost: {
+    lib: {
+      ExeTokenProxy: '0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9',
+    },
+    utils: {
+      Log: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  MeasureGas: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+  Demo: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
+    },
+    lexer: {
+      Utf8Char: '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9',
+  JSNumberLexer: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
+  JSPunctuationLexer: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+  JSKeywordLexer: '0x0165878A594ca255338adfa4d48449f69242Eb8F',
+  JSOperatorLexer: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
+  JSIdentifierLexer: '0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6',
+  JSRegexLexer: '0x8A791620dd6260079BF849Dc5567aDC3F2FdC318',
+  JSStringLexer: '0x610178dA211FEF7D417bC0e6FeD39F05609AD788',
+  JSLexer: '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e',
+    },
+    astBuilder: {
+      ExpressionBuilder: '0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0',
+  StatementBuilder: '0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82',
+  AstBuilder: '0x9A676e781A523b5d0C0e43731313A708CB607508',
+    },
+    interpreter: {
+      StringUtil: '0x0B306BF915C4d645ff596e518fAf3F9669b97016',
+  JSValueUtil: '0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1',
+  JSLiteralUtil: '0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE',
+  JSValueOp: '0x68B1D87F95878fE05B998F19b66F4baba5De1aed',
+  GlobalFunction: '0x3Aa5ebB10DC797CAC828524e59A333d0A371443c',
+  SolidityVisitor: '0xc6e7DF5E7b4f2A278906862b61205850344D4e7d',
+  JSInterpreter: '0x59b670e9fA9D0A427751Af201D676719a970857b',
+    },
+    SnippetJS: {
+      SnippetJS: '0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1',
+  SnippetJSProxy: '0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44',
+    }
+  },
+  goerli: {
+    utils: {
+      MeasureGas: '0x4aC6f8D9227153C31FD85d4AB05c3B681C83e7EA',
+      Demo: '0xeDA8Bbde8e8f097f3113DA3efD4830a0E70746a4',
+    },
+    lexer: {
+      Utf8Char: '0x79149aaa9f47D2756B93276fF6Da8C7CB538BF11',
+      JSNumberLexer: '0xf99172902311348b2A56dda1D7b275433DBc1c86',
+      JSPunctuationLexer: '0x05423c93bDE649e7444f9b217c327c20917848Df',
+      JSKeywordLexer: '0xD2Ba257208d8888ACd859498C7F6Bd67C9660656',
+      JSOperatorLexer: '0xa5667D14ec65bEf225196B4002fEBFDE78C3a68F',
+      JSIdentifierLexer: '0x269cBd3e0Dd9c1681aEa5dA8601646600142F039',
+      JSRegexLexer: '0xF8d5a80BA8B8c8d644765A87F659B6a5F72b8Ef5',
+      JSStringLexer: '0xe5C29B790099d7B7Fbc380303a9Dd3568E100DC4',
+      JSLexer: '0xc5C6650B255c89F129197ac5Af78DE725B38c7c1',
+    },
+    astBuilder: {
+      ExpressionBuilder: '0xc0aAc49552E77CC31A8b3A13c19180048CB7c119',
+      StatementBuilder: '0xEB4d6302441448713a305E482Ed12432478BE7bc',
+  AstBuilder: '0xEb6a49754beDe2DDD48e28cC9f798cb7ed3dfc63',
+    },
+    interpreter: {
+      StringUtil: '0x07eDDa51432B41c9Fa16f67e4e7fA89dB0873c80',
+      JSValueUtil: '0x539e1e89143693B7E6290f37fEe1742e2B12B622',
+      JSValueOp: '0x629B87CF10E00ab679f16863c3C7E74d2357C1C4',
+      JSValueCompare: '0xcbb684370Fe7eB44F768AadCDE6600Fe9C8e29B0',
+      JSValueBit: '0x2e6F4688c8496Ca59E3C7104aEcaA3D941a3BE4f',
+      JSLiteralUtil: '0xAC3465019B24670559Fc3811d605Ef1eA8714f1a',
+      GlobalFunction: '0xC7426E91415AB88D2cE030E6d234472F2D52877D',
+  SolidityVisitor: '0x5922a07dcaEb4ac4eD4EC6E3c1b2Fd0fe2FbdB22',
+  JSInterpreter: '0x4CA9Ec5368A7D07FA0b3Df7b85aCA20735665Fb9',
+    },
+    SnippetJS: {
+      SnippetJS: '0x57b6025951e2B05EC1cB4D7fe3D04C985B8E433b',
+      SnippetJSProxy: '0xeb4F5152cE54a9cb0A271DC537Bc7954e4d0dd4b',
+    },
+    lib: {
+      ExeTokenProxy: '0x18934649EAe953bEe53d85Bb9d650072b6FB47C4',
+    }
+  }
+}
